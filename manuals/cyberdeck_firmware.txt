@@ -1,0 +1,3 @@
+=== CYBERDECK FIRMWARE V1.0.4 ===
+
+Historial de actualizaciones. La versión actual permite conexiones de enlace neuronal seguro en puerto 9999.

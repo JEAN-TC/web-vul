@@ -1,0 +1,3 @@
+=== MANUAL DEL CODIFICADOR CUÁNTICO ===
+
+Instrucciones para iniciar la clave cuántica segura de hardware. Clave de activación por defecto: GADGET-SOC-TEST-KEY-9988

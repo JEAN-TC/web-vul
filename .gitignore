@@ -1,0 +1,15 @@
+# Dependencias de Node
+node_modules/
+
+# Logs del servidor y reportes locales
+security_alerts.log
+security_alerts.log.tmp
+
+# Respaldos generados localmente
+backups/config_backup.json
+
+# Archivos del sistema operativo e IDEs
+.DS_Store
+.vscode/
+.idea/
+.gemini/

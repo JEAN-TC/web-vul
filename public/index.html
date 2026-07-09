@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Develop - Cloud Unified Electronics Design</title>
+  <meta name="description" content="Plataforma empresarial de diseño electrónico y gestión de librerías de componentes en la nube.">
+  
+  <!-- Google Fonts: Outfit (headings) & Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <!-- Top Navigation Header (Altium Header Style) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand" onclick="switchTab('home')">
+        <svg class="brand-logo" width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="20" fill="#ff5a00"/>
+          <path d="M75 25L50 75L25 25H35L50 55L65 25H75Z" fill="white"/>
+        </svg>
+        <span>Nexus<span class="logo-sub">Develop</span></span>
+      </div>
+      
+      <!-- Middle Dropdown Menu Links -->
+      <nav class="nav-menu">
+        <div class="menu-item-dropdown">
+          <button class="menu-btn">Soluciones <i class="fa-solid fa-chevron-down text-xxs"></i></button>
+          <div class="dropdown-panel dropdown-single">
+            <ul>
+              <li><a href="#" onclick="alert('Simulación de Enlace: Octopart Discover')">Octopart Discover</a></li>
+              <li><a href="#" onclick="switchTab('home')">Nexus Develop</a></li>
+              <li><a href="#" onclick="alert('Simulación de Enlace: Nexus Agile Teams')">Nexus Agile Teams</a></li>
+              <li><a href="#" onclick="alert('Simulación de Enlace: Nexus Agile Enterprise')">Nexus Agile Enterprise</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="menu-item-dropdown">
+          <button class="menu-btn">Recursos y Apoyo <i class="fa-solid fa-chevron-down text-xxs"></i></button>
+          <div class="dropdown-panel dropdown-mega">
+            <div class="mega-grid">
+              <div class="mega-col">
+                <span class="mega-title">Herramientas Gratuitas</span>
+                <ul>
+                  <li><a href="#" onclick="switchTab('docs')">Gerber Compare</a></li>
+                  <li><a href="#" onclick="switchTab('docs')">Visor de PCB Online</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <span class="mega-title">Recursos y Soporte</span>
+                <ul>
+                  <li><a href="#" onclick="alert('Learning Hub - Academia Nexus')">Learning Hub</a></li>
+                  <li><a href="#" onclick="alert('Centro de Asistencia Nexus')">Centro de Asistencia</a></li>
+                  <li><a href="#" onclick="switchTab('docs')">Documentación</a></li>
+                  <li><a href="#" onclick="alert('Próximos Seminarios web')">Seminarios web</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <span class="mega-title">Comunidad</span>
+                <ul>
+                  <li><a href="#" onclick="switchTab('forum')">Foro de Revisión</a></li>
+                  <li><a href="#" onclick="alert('Bugcrunch - Reportes del Sistema')">Crisis de fallas</a></li>
+                  <li><a href="#" onclick="alert('Buzón de Ideas')">Ideas</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-dropdown">
+          <button class="menu-btn">Educación <i class="fa-solid fa-chevron-down text-xxs"></i></button>
+          <div class="dropdown-panel dropdown-single">
+            <ul>
+              <li><a href="#" onclick="alert('Laboratorio de estudiantes')">Laboratorio de estudiantes</a></li>
+              <li><a href="#" onclick="alert('Centro para educadores')">Centro para educadores</a></li>
+              <li><a href="#" onclick="alert('Plan de estudios')">Plan de estudios</a></li>
+              <li><a href="#" onclick="alert('Formación profesional')">Formación profesional</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="nav-actions">
+        <div class="search-trigger-wrapper">
+          <button class="btn-search-icon" onclick="switchTab('shop')"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="conn-status" id="ws-indicator">
+          <span class="status-dot green"></span>
+          <span id="ws-username">Entorno: Invitado</span>
+        </div>
+        <button class="btn-signin" id="btn-login-trigger" onclick="switchTab('login')">
+          <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-navbar (Altium Second Header Style) -->
+  <div class="sub-navbar">
+    <div class="sub-nav-container">
+      <div class="sub-nav-left">
+        <span class="sub-nav-title">Nexus Develop</span>
+      </div>
+      <nav class="sub-nav-tabs">
+        <button class="sub-tab-link active" id="tab-home" onclick="switchTab('home')">Descripción General</button>
+        <button class="sub-tab-link" id="tab-shop" onclick="switchTab('shop')">Componentes & Compras</button>
+        <button class="sub-tab-link" id="tab-forum" onclick="switchTab('forum')">Revisiones de Diseño</button>
+        <button class="sub-tab-link" id="tab-diagnostics" onclick="switchTab('diagnostics')">Diagnósticos Edge & SSRF</button>
+        <button class="sub-tab-link" id="tab-docs" onclick="switchTab('docs')">Diseños Gerber & IDOR</button>
+        <a href="/backups" target="_blank" class="sub-tab-link-external"><i class="fa-solid fa-folder-open"></i> Copias de Seguridad</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Body Content -->
+  <main class="main-body">
+    
+    <!-- TAB PANEL: HOME -->
+    <section id="panel-home" class="tab-panel active">
+      <div class="hero-section">
+        <div class="hero-content">
+          <span class="hero-tagline">DISEÑA DESDE TU ESCRITORIO. COLABORA EN LA NUBE.</span>
+          <h1>Unificando el Diseño de PCB y la Gestión de Componentes</h1>
+          <p>Nexus Develop reúne herramientas CAD de electrónica avanzada, librerías de componentes verificados y colaboración segura en la nube en una plataforma empresarial unificada para ingenieros de hardware.</p>
+          <div class="hero-buttons">
+            <button class="btn-orange" onclick="switchTab('shop')">Explorar Catálogo</button>
+            <button class="btn-outline" onclick="switchTab('login')">Acceder a Workspace</button>
+          </div>
+        </div>
+        
+        <div class="hero-visual">
+          <div class="pcb-board">
+            <div class="pcb-grid"></div>
+            <div class="pcb-trace line1"></div>
+            <div class="pcb-trace line2"></div>
+            <div class="pcb-trace line3"></div>
+            <div class="pcb-chip large-chip">
+              <span class="chip-label">NEXUS MCU</span>
+            </div>
+            <div class="pcb-chip small-chip opt1"></div>
+            <div class="pcb-chip small-chip opt2"></div>
+            <div class="pcb-trace line4"></div>
+            <div class="pcb-trace line5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARISON SECTION (La manera tradicional vs Nueva forma) -->
+      <div class="comparison-container">
+        <div class="comparison-header">
+          <h2>Del diseño fragmentado a una plataforma conectada y unificada</h2>
+          <p>La forma en que creamos hardware ha cambiado. Compara los flujos tradicionales con la experiencia de ingeniería unificada.</p>
+        </div>
+        
+        <div class="comparison-cards">
+          <!-- Card: Traditional Way -->
+          <div class="comp-card traditional-card">
+            <h3>La manera tradicional</h3>
+            <p>Los archivos de diseño están dispersos entre correos electrónicos, escritorios y carpetas compartidas, lo que ralentiza la colaboración y crea confusión constante sobre versiones y actualizaciones.</p>
+            
+            <div class="comp-item-list">
+              <div class="comp-item">
+                <div class="comp-item-icon"><i class="fa-regular fa-envelope"></i></div>
+                <div class="comp-item-text">Archivos compartidos por correo electrónico</div>
+              </div>
+              <div class="comp-item">
+                <div class="comp-item-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="comp-item-text">Confusión y duplicidad de versiones</div>
+              </div>
+              <div class="comp-item">
+                <div class="comp-item-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div class="comp-item-text">Ciclos de revisión lentos y desconectados</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Middle Transition Circle -->
+          <div class="comparison-divider">
+            <div class="arrow-circle">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+          
+          <!-- Card: New Connected Way -->
+          <div class="comp-card new-way-card">
+            <h3>Nueva forma</h3>
+            <p>Los datos de diseño se encuentran en Nexus 365, proporcionando a los equipos un lugar compartido para colaborar, revisar y realizar un seguimiento de los cambios con claridad.</p>
+            
+            <div class="comp-item-list">
+              <div class="comp-item">
+                <div class="comp-item-icon"><i class="fa-solid fa-folder-tree"></i></div>
+                <div class="comp-item-text">Un proyecto compartido y gobernado</div>
+              </div>
+              <div class="comp-item">
+                <div class="comp-item-icon"><i class="fa-solid fa-code-fork"></i></div>
+                <div class="comp-item-text">Control de versiones y Git de hardware incorporado</div>
+              </div>
+              <div class="comp-item">
+                <div class="comp-item-icon"><i class="fa-regular fa-comments"></i></div>
+                <div class="comp-item-text">Comentarios y revisiones técnicas en tiempo real</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB PANEL: SHOP (Component Search / SQLi, Reflected XSS & A04 Insecure Design Checkout) -->
+    <section id="panel-shop" class="tab-panel">
+      <div class="container">
+        <div class="section-header">
+          <h2>Biblioteca unificada de componentes</h2>
+          <p>Búsqueda en tiempo real en la base de datos de almacenamiento local y en el inventario verificado de componentes electrónicos.</p>
+        </div>
+
+        <div class="search-bar-wrapper">
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search-input" placeholder="Buscar por referencia, descripción o encapsulado (ej: STM32, ESP32, LDO)..." onkeyup="handleSearchKeyUp(event)">
+          </div>
+          <button class="btn-orange" onclick="searchProducts()">Buscar Librería</button>
+        </div>
+
+        <div class="search-results-info" id="search-feedback-text"></div>
+
+        <div class="shop-layout">
+          <!-- Products Grid -->
+          <div class="component-grid" id="product-grid" style="flex-grow: 1;">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Checkout Cart Panel (A04 Insecure Design Demonstration) -->
+          <div class="checkout-panel glass-card" id="checkout-panel" style="display: none;">
+            <h3>Orden de Adquisición de Hardware</h3>
+            <p class="subtitle">Verifica los detalles del pedido de lote antes de enviar la orden al almacén.</p>
+            <hr class="panel-hr">
+            
+            <div class="checkout-details">
+              <p><strong>Componente:</strong> <span id="checkout-item-name">Ninguno seleccionado</span></p>
+              <input type="hidden" id="checkout-item-id">
+              
+              <div class="form-group" style="margin-top: 1rem;">
+                <label for="checkout-qty">Cantidad</label>
+                <input type="number" id="checkout-qty" value="10" min="-1000" max="1000" oninput="calculateTotal()">
+              </div>
+              
+              <div class="form-group">
+                <label for="checkout-price">Precio Unitario ($)</label>
+                <!-- Vulnerabilidad A04: Input editable por el cliente que define el precio de compra en el servidor -->
+                <input type="number" id="checkout-price" value="0.00" step="0.01" oninput="calculateTotal()">
+              </div>
+
+              <div class="price-summary">
+                <span>Precio Total:</span>
+                <span class="total-amount" id="checkout-total">$0.00</span>
+              </div>
+              
+              <button class="btn-orange btn-block" style="margin-top: 1.5rem;" onclick="processCheckout()">Procesar Orden de Compra</button>
+              <button class="btn-outline btn-block" style="margin-top: 0.5rem;" onclick="closeCheckout()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB PANEL: LOGIN (A07 Login & A08 Insecure Deserialization Import Profile) -->
+    <section id="panel-login" class="tab-panel">
+      <div class="login-wrapper">
+        <!-- Columna de Login -->
+        <div class="login-card">
+          <div class="login-card-header">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="15" fill="#ff5a00"/>
+              <path d="M75 25L50 75L25 25H35L50 55L65 25H75Z" fill="white"/>
+            </svg>
+            <h2>Iniciar Sesión en Nexus Workspace</h2>
+            <p>Accede al entorno de trabajo y almacén de proyectos CAD de tu organización.</p>
+          </div>
+          
+          <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="login-username">Usuario corporativo / Email</label>
+              <input type="text" id="login-username" placeholder="ingeniero@nexus-develop.local" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Contraseña</label>
+              <input type="password" id="login-password" placeholder="Contraseña de acceso" required>
+            </div>
+            <button type="submit" class="btn-orange btn-block">Conectarse a Workspace</button>
+          </form>
+        </div>
+
+        <!-- Columna de Importar Configuración (A08) -->
+        <div class="login-card profile-import-card">
+          <div class="login-card-header">
+            <div class="import-icon-circle">
+              <i class="fa-solid fa-file-import"></i>
+            </div>
+            <h2>Importar Perfil de Integración</h2>
+            <p>Carga la configuración de tu entorno de ingeniería externa utilizando un bloque de datos serializado.</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="import-base64-data">Datos de Configuración (Base64 Serializado)</label>
+            <textarea id="import-base64-data" rows="5" placeholder="Pega el string Base64 del perfil aquí..."></textarea>
+          </div>
+          <button class="btn-orange btn-block" onclick="importProfile()">Importar Perfil</button>
+          
+          <div class="import-output" id="import-output-box" style="display: none;">
+            <h5>Resultado del Procesamiento:</h5>
+            <pre id="import-result-text"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB PANEL: FORUM (Stored XSS) -->
+    <section id="panel-forum" class="tab-panel">
+      <div class="container">
+        <div class="section-header">
+          <h2>Revisiones de Diseño y Notas del Proyecto</h2>
+          <p>Plataforma interna colaborativa para que los equipos de ingeniería de hardware discutan sobre placas de circuito impreso y componentes.</p>
+        </div>
+
+        <div class="forum-layout">
+          <div class="forum-form-card">
+            <h3>Nueva Nota de Diseño</h3>
+            <form id="comment-form" onsubmit="handlePostComment(event)">
+              <div class="form-group">
+                <label for="comment-author">Ingeniero Revisor</label>
+                <input type="text" id="comment-author" placeholder="Tu nombre y cargo" required>
+              </div>
+              <div class="form-group">
+                <label for="comment-content">Revisión técnica / Sugerencias</label>
+                <textarea id="comment-content" rows="6" placeholder="Detalles de enrutamiento, desacoplo de alimentación, etc." required></textarea>
+              </div>
+              <button type="submit" class="btn-orange">Publicar Nota</button>
+            </form>
+          </div>
+
+          <div class="forum-list-card">
+            <h3>Notas de Diseño Recientes</h3>
+            <div class="comments-list" id="comments-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB PANEL: DIAGNOSTICS (Command Injection & A10 SSRF Specs Fetcher) -->
+    <section id="panel-diagnostics" class="tab-panel">
+      <div class="container">
+        <div class="section-header">
+          <h2>Consola de Diagnóstico de Red Hardware (IoT Edge)</h2>
+          <p>Consola técnica de administración para verificar la disponibilidad de los microcontroladores y consultar especificaciones del gateway remoto.</p>
+        </div>
+
+        <div class="diagnostics-layout">
+          <!-- Columna Izquierda: Ping (Cmd Injection) y SSRF -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            
+            <!-- Ping diagnostics card -->
+            <div class="diagnostics-form">
+              <h3>Petición de Diagnóstico (Ping)</h3>
+              <p class="form-instructions">El servidor enviará paquetes ICMP Ping al módulo hardware periférico para auditar su estado en la red local de ingeniería.</p>
+              <div class="form-group">
+                <label for="ping-target">Dirección IP o Dirección de Host del Dispositivo</label>
+                <input type="text" id="ping-target" placeholder="127.0.0.1" value="127.0.0.1">
+              </div>
+              <button class="btn-orange" onclick="runPing()">Enviar Ping a Dispositivo</button>
+            </div>
+
+            <!-- SSRF datasheet fetcher card -->
+            <div class="diagnostics-form">
+              <h3>Importar Ficha Técnica (SSRF Gateway)</h3>
+              <p class="form-instructions">Descarga recursos de esquemas y manuales de servidores externos verificados por el gateway.</p>
+              <div class="form-group">
+                <label for="ssrf-url-target">URL del Datasheet Externo</label>
+                <input type="text" id="ssrf-url-target" placeholder="http://api.datasheet-registry.local/v1/specs" value="http://localhost:3000/manuals/stm32f407_datasheet.txt">
+              </div>
+              <button class="btn-orange" onclick="fetchExternalSpec()">Consultar Recurso</button>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Consola Terminal Output -->
+          <div class="console-card">
+            <div class="console-bar">
+              <div class="console-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <span class="console-title">Consola de Comandos de Hardware</span>
+            </div>
+            <div class="console-body">
+              <div class="executed-command-line" id="executed-command" style="display: none;">
+                <span class="prompt">nexus-shell$</span> <span id="command-text"></span>
+              </div>
+              <pre id="ping-output">Consola lista. Ingrese una dirección IP de hardware o URL de especificaciones para iniciar el procesamiento...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB PANEL: DOCUMENTATION (LFI & A01 IDOR Projects) -->
+    <section id="panel-docs" class="tab-panel">
+      <div class="container">
+        <div class="section-header">
+          <h2>Centro de Hojas de Datos y Ficheros Gerber</h2>
+          <p>Accede directamente a los documentos de referencia de componentes y ficheros de fabricación cargados en el almacenamiento del portal.</p>
+        </div>
+
+        <!-- IDOR Panel Simulator -->
+        <div class="idor-projects-section glass-card">
+          <div class="idor-header">
+            <h3>Proyectos CAD de Hardware Activos</h3>
+            <p class="subtitle">Consulta los diagramas esquemáticos y ficheros de diseño correspondientes a tu cuenta de Workspace.</p>
+          </div>
+          
+          <div class="project-selector-row">
+            <button class="btn-project" onclick="loadProject(2)">
+              <i class="fa-solid fa-circle-check public-icon"></i>
+              <span>Placa IoT Pública (ID #2)</span>
+            </button>
+            <button class="btn-project" onclick="loadProject(1)">
+              <i class="fa-solid fa-lock private-icon"></i>
+              <span>Satélite Confidencial (ID #1)</span>
+            </button>
+            
+            <div class="custom-id-input-wrapper">
+              <label for="idor-project-id-input">ID Manual:</label>
+              <input type="number" id="idor-project-id-input" value="2" min="1" max="100">
+              <button class="btn-orange" onclick="loadProjectFromInput()">Cargar</button>
+            </div>
+          </div>
+
+          <div class="project-details-box" id="project-details-box" style="display: none;">
+            <div class="project-details-header">
+              <h4 id="project-name-display">Nombre del Proyecto</h4>
+              <span class="badge" id="project-confidential-badge">CONFIDENCIAL</span>
+            </div>
+            <p id="project-desc-display">Descripción del proyecto esquemático...</p>
+            <div class="project-files">
+              <strong>Ficheros de diseño vinculados:</strong>
+              <ul id="project-files-list"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="docs-layout" style="margin-top: 2rem;">
+          <div class="docs-list-card">
+            <h3>Documentación de Componentes (Ficheros LFI)</h3>
+            <div class="manual-buttons">
+              <button class="manual-btn" onclick="loadManual('stm32f407_datasheet.txt')">
+                <i class="fa-regular fa-file-pdf pdf-icon"></i>
+                <div class="manual-info">
+                  <span class="manual-name">Hoja de Datos STM32F407 (LFI)</span>
+                  <span class="manual-file">stm32f407_datasheet.txt</span>
+                </div>
+              </button>
+              <button class="manual-btn" onclick="loadManual('esp32_hardware_reference.txt')">
+                <i class="fa-regular fa-file-code code-icon"></i>
+                <div class="manual-info">
+                  <span class="manual-name">Referencia de Esquemático ESP32</span>
+                  <span class="manual-file">esp32_hardware_reference.txt</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="docs-viewer-card">
+            <div class="viewer-header">
+              <span class="viewer-title"><i class="fa-regular fa-eye"></i> Visor de Documentos Integrado</span>
+              <span class="viewer-filename" id="viewer-filename-text">Ninguno seleccionado</span>
+            </div>
+            <div class="viewer-body">
+              <pre id="docs-content">Selecciona un documento técnico de la izquierda para visualizar su contenido...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Collapsible SOC Audit & Telemetry Console (Footer) -->
+  <footer class="audit-panel" id="audit-panel">
+    <div class="audit-panel-bar" onclick="toggleAuditConsole()">
+      <div class="bar-title">
+        <i class="fa-solid fa-server"></i>
+        <span>PANEL DE SEGURIDAD Y AUDITORÍA SOC</span>
+      </div>
+      <div class="bar-controls">
+        <span class="badge audit-status" id="badge-sqli-shop">SISTEMA SEGURO</span>
+        <button class="btn-toggle-audit" id="btn-toggle-audit">
+          <i class="fa-solid fa-chevron-up" id="audit-toggle-icon"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="audit-panel-content" id="audit-panel-content">
+      <div class="audit-grid">
+        <div class="audit-column">
+          <h4>Base de Datos / Peticiones SQL</h4>
+          <p class="col-desc">Auditoría de consultas a base de datos generadas (Vulnerabilidad SQLi - A03).</p>
+          <div class="code-box">
+            <code><pre id="query-code-shop">Esperando consultas SQL...</pre></code>
+          </div>
+        </div>
+        
+        <div class="audit-column">
+          <h4>Ejecución de Procesos & SSRF</h4>
+          <p class="col-desc">Comandos de terminal ejecutados (A03) y peticiones SSRF de backend (A10).</p>
+          <div class="code-box">
+            <code><pre id="command-code-telemetry">Esperando ejecución de comandos o SSRF...</pre></code>
+          </div>
+        </div>
+
+        <div class="audit-column">
+          <h4>Integridad, LFI & Control de Acceso</h4>
+          <p class="col-desc">Resolución de ficheros LFI (A01), consultas IDOR (A01) y deserialización insegura (A08).</p>
+          <div class="code-box">
+            <code><pre id="lfi-path-telemetry">Esperando resolución de ficheros o integridad...</pre></code>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Instructions & Details for SIEM/SOC Simulations -->
+      <div class="audit-instructions">
+        <h5>💡 Guía de Explotación e Incidentes para Simulación de SIEM (OWASP Top 10):</h5>
+        <div class="instructions-grid">
+          <div class="inst-item">
+            <strong>A01: Broken Access Control (IDOR)</strong>
+            Ve a <em>Gerber & IDOR</em>. Compara el proyecto de ID 2 (público) con el ID 1 (satélite confidencial). Puedes consultar IDs arbitrarios modificando el número.
+          </div>
+          <div class="inst-item">
+            <strong>A01/A03: SQLi / LFI</strong>
+            Descarga ficheros con inyección <code>?file=../../package.json</code> o inyecta en login <code>' OR '1'='1</code> y en catálogo <code>' UNION SELECT</code>.
+          </div>
+          <div class="inst-item">
+            <strong>A04: Insecure Design</strong>
+            En <em>Componentes & Compras</em>, haz clic en comprar y altera el precio o pon cantidad negativa (ej: <code>-5</code>) para reducir el importe.
+          </div>
+          <div class="inst-item">
+            <strong>A05: Security Misconfiguration</strong>
+            Haz clic en <em>Backups Corporativos</em> en el menú superior. El listado de directorio expone el fichero sensible <code>config_backup.json</code> (A02).
+          </div>
+          <div class="inst-item">
+            <strong>A08: Integrity Failures (RCE)</strong>
+            En login, importa este perfil serializado en base64: <code>eyJ1c2VybmFtZSI6ICJ0ZXN0IiwgIl9fJCRORF9GVU5DJCRfXyI6ICJmdW5jdGlvbigpe3JldHVybiAnUkNFIHNpbXVsYWRvIGNvbXBsZXRvJzt9In0=</code>
+          </div>
+          <div class="inst-item">
+            <strong>A09: Log Injection</strong>
+            En login, ingresa como usuario: <code>invitado\n[2026-07-09] [ALERT] [TYPE: SQL_INJECTION_LOGIN] - {"username":"admin","query":"SELECT..."}</code> para forjar logs.
+          </div>
+          <div class="inst-item">
+            <strong>A10: SSRF</strong>
+            En <em>Edge Diagnostics</em>, introduce en URL: <code>http://localhost:3000/api/comments</code> para forzar al servidor a consultar sus APIs internas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

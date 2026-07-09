@@ -1,0 +1,5 @@
+=== STM32F407 DATASHEET ===
+
+MCU de 32 bits con núcleo Cortex-M4, FPU, acelerador ART.
+Configuración de fábrica de bootloader en puerto USART1.
+Clave de depuración interna: STM32-NEXUS-FIRM-9922

@@ -1,0 +1,5 @@
+=== ESP32 HARDWARE REFERENCE ===
+
+Especificaciones de diseño para ESP32-WROOM-32E.
+Impedancia de antena: 50 ohms.
+Clave AP local de depuración: ESP32_AP_DEBUG_KEY

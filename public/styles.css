@@ -1,0 +1,1816 @@
+/* ==========================================================================
+   NEXUS DEVELOP PORTAL - STYLESHEET
+   Aesthetics: Altium Website Design & Corporate Engineering Aesthetic
+   Colors: Altium Orange (#ff5a00), Deep Slate Navy (#0c1322), Clean White/Light Gray (#f8fafc)
+   ========================================================================== */
+
+:root {
+  --bg-main: #f8fafc;           /* Light, clean slate background like Altium pages */
+  --bg-dark-section: #0c1322;   /* Deep slate navy for hero and dark section segments */
+  --bg-nav: rgba(12, 19, 34, 0.95); /* Header nav dark background */
+  --bg-card: #ffffff;           /* Clean white cards */
+  --bg-card-hover: #ffffff;
+  --border-color: #e2e8f0;       /* Soft light borders */
+  --border-dark: #1e293b;
+  
+  --primary-altium: #ff5a00;    /* Altium Orange */
+  --primary-hover: #e04f00;
+  --altium-blue: #007dd4;       /* Altium Lochmara Blue */
+  --altium-dark-blue: #003a7e;  /* Altium Congress Blue */
+  
+  --cyan-accent: #0284c7;       /* Refined Blue Link accent */
+  --emerald-success: #10b981;
+  --red-danger: #ef4444;
+  --yellow-warning: #f59e0b;
+  
+  --text-main: #1e293b;         /* Dark text for light background readability */
+  --text-muted: #64748b;        /* Muted cool gray text */
+  --text-light: #f8fafc;        /* White text for dark headers and hero */
+  --text-dark: #0f172a;         /* High-contrast dark headers */
+  
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-title: 'Outfit', sans-serif;
+  --font-family-mono: 'Fira Code', 'Courier New', monospace;
+  
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-family-sans);
+  overflow-x: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   NAVBAR (Altium Top Nav Style)
+   ========================================================================== */
+.navbar {
+  height: 60px;
+  background-color: var(--bg-nav);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-dark);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-title);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-light);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  border-radius: 4px;
+}
+
+.logo-sub {
+  color: var(--primary-altium);
+  font-weight: 500;
+}
+
+/* Dropdown Menu Container */
+.nav-menu {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.menu-item-dropdown {
+  position: relative;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--transition-fast);
+}
+
+.menu-btn:hover {
+  color: #ffffff;
+}
+
+.text-xxs {
+  font-size: 0.65rem;
+}
+
+/* Dropdown Panels */
+.dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  z-index: 200;
+  pointer-events: none;
+}
+
+.menu-item-dropdown:hover .dropdown-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 4px);
+  pointer-events: auto;
+}
+
+/* Single column dropdown */
+.dropdown-single {
+  width: 220px;
+  padding: 0.75rem;
+}
+
+.dropdown-single ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dropdown-single a {
+  text-decoration: none;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  display: block;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.dropdown-single a:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+/* Mega dropdown (3 columns) */
+.dropdown-mega {
+  width: 580px;
+  padding: 1.5rem;
+}
+
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.mega-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mega-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--primary-altium);
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  margin-bottom: 0.35rem;
+}
+
+.mega-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.mega-col a {
+  text-decoration: none;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.5rem;
+  display: block;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.mega-col a:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.search-trigger-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.btn-search-icon {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color var(--transition-fast);
+}
+
+.btn-search-icon:hover {
+  color: #ffffff;
+}
+
+.conn-status {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.status-dot.green { background-color: var(--emerald-success); color: var(--emerald-success); }
+.status-dot.blue { background-color: var(--cyan-accent); color: var(--cyan-accent); }
+
+.btn-signin {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-light);
+  padding: 0.45rem 1.25rem;
+  border-radius: 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.btn-signin:hover {
+  border-color: var(--primary-altium);
+  background-color: var(--primary-altium);
+  color: var(--text-light);
+}
+
+/* ==========================================================================
+   SUB-NAVBAR (Altium Secondary Nav Style)
+   ========================================================================== */
+.sub-navbar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.sub-nav-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-nav-title {
+  font-family: var(--font-family-title);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.sub-nav-tabs {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  height: 100%;
+}
+
+.sub-tab-link, .sub-tab-link-external {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.95rem 0.1rem;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sub-tab-link:hover, .sub-tab-link-external:hover {
+  color: var(--text-dark);
+}
+
+.sub-tab-link.active {
+  color: var(--text-dark);
+}
+
+.sub-tab-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-altium);
+  transform: scaleX(0);
+  transition: var(--transition-normal);
+}
+
+.sub-tab-link.active::after {
+  transform: scaleX(1);
+}
+
+.sub-tab-link-external {
+  color: var(--cyan-accent);
+}
+
+.sub-tab-link-external:hover {
+  color: var(--altium-dark-blue);
+}
+
+/* ==========================================================================
+   MAIN CONTENT WRAPPER
+   ========================================================================== */
+.main-body {
+  margin-top: 110px;
+  margin-bottom: 50px; /* Space for collapsed audit console */
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-family-title);
+  color: var(--text-dark);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.5px;
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 850px;
+  line-height: 1.6;
+}
+
+/* Tab Panels Visibility */
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.35s ease-in-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glassmorphism / Altium White Cards */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;          /* Premium soft Altium corners */
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  transition: var(--transition-normal);
+}
+
+.glass-card:hover {
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* Inputs and Forms */
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: var(--text-dark);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: var(--primary-altium);
+  box-shadow: 0 0 0 3px rgba(255, 90, 0, 0.15);
+  background-color: #ffffff;
+}
+
+/* Buttons */
+.btn-orange {
+  background-color: var(--primary-altium);
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;           /* Rounded pill buttons like Altium CTA buttons */
+  padding: 0.9rem 2.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(255, 90, 0, 0.2);
+}
+
+.btn-orange:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 90, 0, 0.35);
+}
+
+.btn-outline {
+  background: none;
+  border: 1px solid #94a3b8;
+  color: var(--text-dark);
+  border-radius: 24px;
+  padding: 0.9rem 2.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-dark);
+  background-color: rgba(15, 23, 42, 0.05);
+  transform: translateY(-1px);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   1. HOME TAB (Hero & Brand Styling - Dark Section)
+   ========================================================================== */
+.hero-section {
+  max-width: 100%;
+  margin: 0;
+  padding: 6rem 4rem;
+  background-color: var(--bg-dark-section);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  border-bottom: 4px solid var(--primary-altium);
+}
+
+.hero-content .hero-tagline {
+  font-family: var(--font-family-title);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--primary-altium);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.hero-content h1 {
+  font-family: var(--font-family-title);
+  color: var(--text-light);
+  font-size: 3.5rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 1.75rem;
+}
+
+.hero-content p {
+  color: #94a3b8;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.hero-buttons .btn-outline {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-light);
+}
+
+.hero-buttons .btn-outline:hover {
+  border-color: var(--text-light);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* PCB Visualization Graphic - Custom Tech Colors */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pcb-board {
+  width: 400px;
+  height: 400px;
+  background-color: #0c1322;
+  border: 4px solid #1e293b;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 125, 212, 0.15);
+}
+
+.pcb-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(#1e293b 1px, transparent 1px),
+    radial-gradient(#1e293b 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.6;
+}
+
+.pcb-trace {
+  position: absolute;
+  background-color: #ff5a00; /* Orange Trace instead of gold */
+  box-shadow: 0 0 10px rgba(255, 90, 0, 0.4);
+  background: linear-gradient(90deg, #ff5a00 0%, #ffffff 50%, #ff5a00 100%);
+  background-size: 200% 100%;
+  animation: flowPulse 2.5s linear infinite;
+}
+
+.pcb-trace.line1 {
+  top: 60px;
+  left: 60px;
+  width: 110px;
+  height: 3px;
+}
+.pcb-trace.line1::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  border-left: 3px solid #ff5a00;
+  border-bottom: 3px solid #ff5a00;
+  transform: rotate(45deg);
+}
+
+.pcb-trace.line2 {
+  bottom: 90px;
+  right: 60px;
+  width: 130px;
+  height: 3px;
+}
+
+.pcb-trace.line3 {
+  top: 160px;
+  right: 90px;
+  width: 3px;
+  height: 110px;
+  background: linear-gradient(180deg, #ff5a00 0%, #ffffff 50%, #ff5a00 100%);
+  background-size: 100% 200%;
+}
+
+@keyframes flowPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.pcb-chip {
+  position: absolute;
+  background-color: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.large-chip {
+  width: 140px;
+  height: 140px;
+  top: 130px;
+  left: 130px;
+}
+
+.chip-label {
+  font-family: var(--font-family-title);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ff5a00;
+  letter-spacing: 0.75px;
+}
+
+.large-chip::before, .large-chip::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  height: 6px;
+  background-image: repeating-linear-gradient(90deg, #ff5a00, #ff5a00 6px, transparent 6px, transparent 12px);
+}
+.large-chip::before { top: -8px; }
+.large-chip::after { bottom: -8px; }
+
+.small-chip {
+  width: 60px;
+  height: 50px;
+  border: 1px solid #475569;
+}
+.small-chip.opt1 { top: 60px; right: 90px; }
+.small-chip.opt2 { bottom: 70px; left: 70px; }
+
+/* Trust Badges - Light segment */
+.trust-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 3rem 6rem 3rem;
+  text-align: center;
+}
+
+.trust-title {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 2.5rem;
+}
+
+.logos-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.logo-item {
+  font-family: var(--font-family-title);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #cbd5e1;
+  letter-spacing: 1px;
+  transition: var(--transition-fast);
+}
+.logo-item:hover {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   2. SHOP TAB (Electronic Components Library Search & A04 Checkout)
+   ========================================================================== */
+.shop-layout {
+  display: flex;
+  gap: 3rem;
+  align-items: start;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  padding: 0.85rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+}
+
+.input-icon-wrapper {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-wrapper i {
+  position: absolute;
+  left: 1.25rem;
+  color: var(--text-muted);
+}
+
+.input-icon-wrapper input {
+  padding-left: 3rem;
+  border-color: #e2e8f0;
+}
+
+.search-results-info {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.component-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;          /* Clean rounded look like Altium product sheets */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
+  transition: var(--transition-normal);
+}
+
+.component-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+.component-card-image-wrapper {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background-color: #f1f5f9;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.component-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.component-card:hover .component-card-img {
+  transform: scale(1.04);
+}
+
+.component-card-content {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.component-card h3 {
+  font-family: var(--font-family-title);
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.component-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.component-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+}
+
+.comp-price {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--altium-blue);
+}
+
+.comp-tag {
+  background-color: rgba(255, 90, 0, 0.08);
+  color: var(--primary-altium);
+  border: 1px solid rgba(255, 90, 0, 0.12);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+/* A04 Checkout Panel */
+.checkout-panel {
+  width: 400px;
+  min-width: 400px;
+  border-left: 4px solid var(--primary-altium) !important;
+  animation: slideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.panel-hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1.25rem 0;
+}
+
+.price-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.price-summary span:first-child {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.total-amount {
+  font-family: var(--font-family-mono);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--emerald-success);
+}
+
+/* ==========================================================================
+   3. WORKSPACE TAB (Login & A08 Profile Deserialization Import)
+   ========================================================================== */
+.login-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.login-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-card-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-card-header h2 {
+  font-family: var(--font-family-title);
+  color: var(--text-dark);
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.login-card-header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.import-icon-circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.65rem;
+  color: var(--cyan-accent);
+}
+
+.import-output {
+  margin-top: 1.75rem;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.import-output h5 {
+  font-family: var(--font-family-title);
+  color: var(--emerald-success);
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.import-output pre {
+  font-family: var(--font-family-mono);
+  font-size: 0.8rem;
+  color: #38bdf8;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ==========================================================================
+   4. FORUM TAB (PCB Reviews / Stored XSS)
+   ========================================================================== */
+.forum-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.forum-form-card, .forum-list-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+}
+
+.forum-form-card h3, .forum-list-card h3 {
+  font-family: var(--font-family-title);
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  font-size: 1.35rem;
+}
+
+.forum-list-card {
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+.comment-card {
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.comment-author {
+  font-weight: 700;
+  color: var(--primary-altium);
+}
+
+.comment-date {
+  color: var(--text-muted);
+}
+
+.comment-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  word-break: break-all;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   5. DIAGNOSTICS TAB (Command Injection & SSRF)
+   ========================================================================== */
+.diagnostics-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.diagnostics-form {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+}
+
+.diagnostics-form h3 {
+  font-family: var(--font-family-title);
+  color: var(--text-dark);
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-instructions {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.console-card {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.console-bar {
+  background-color: #0c1322;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.console-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.console-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.console-dots .dot:nth-child(1) { background-color: var(--red-danger); }
+.console-dots .dot:nth-child(2) { background-color: var(--yellow-warning); }
+.console-dots .dot:nth-child(3) { background-color: var(--emerald-success); }
+
+.console-title {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+}
+
+.console-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-family: var(--font-family-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.executed-command-line {
+  color: #38bdf8;
+  margin-bottom: 0.9rem;
+}
+
+.executed-command-line .prompt {
+  color: var(--primary-altium);
+}
+
+#ping-output {
+  color: #e2e8f0;
+  white-space: pre-wrap;
+}
+
+/* ==========================================================================
+   6. DOCS TAB (LFI Gerber & A01 IDOR Projects)
+   ========================================================================== */
+.idor-projects-section {
+  border-left: 4px solid var(--altium-blue) !important;
+}
+
+.idor-header h3 {
+  font-family: var(--font-family-title);
+  color: var(--text-dark);
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.idor-header .subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+
+.project-selector-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.btn-project {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  color: var(--text-dark);
+  padding: 0.85rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
+  transition: var(--transition-fast);
+}
+
+.btn-project:hover {
+  border-color: var(--altium-blue);
+  background-color: #f8fafc;
+}
+
+.public-icon { color: var(--emerald-success); }
+.private-icon { color: var(--red-danger); }
+
+.custom-id-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: auto;
+}
+
+.custom-id-input-wrapper label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+#idor-project-id-input {
+  width: 75px;
+  padding: 0.6rem;
+  text-align: center;
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.project-details-box {
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.75rem;
+  animation: fadeIn 0.35s ease-in-out;
+}
+
+.project-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.project-details-header h4 {
+  font-family: var(--font-family-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--altium-dark-blue);
+}
+
+.project-files {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.9rem;
+}
+
+.project-files ul {
+  margin-top: 0.65rem;
+  padding-left: 1.5rem;
+}
+
+.project-files li {
+  color: var(--primary-altium);
+  margin-bottom: 0.35rem;
+  font-family: var(--font-family-mono);
+}
+
+.docs-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.docs-list-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+}
+
+.docs-list-card h3 {
+  font-family: var(--font-family-title);
+  color: var(--text-dark);
+  font-size: 1.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.manual-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.manual-btn {
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-dark);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.manual-btn:hover {
+  border-color: var(--primary-altium);
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.manual-btn i {
+  font-size: 1.75rem;
+}
+
+.pdf-icon { color: var(--red-danger); }
+.code-icon { color: var(--cyan-accent); }
+
+.manual-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.manual-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.manual-file {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+  margin-top: 0.15rem;
+}
+
+.docs-viewer-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+}
+
+.viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.viewer-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.viewer-filename {
+  font-family: var(--font-family-mono);
+  color: var(--altium-blue);
+  font-size: 0.85rem;
+}
+
+.viewer-body {
+  flex-grow: 1;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 280px;
+}
+
+#docs-content {
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+/* ==========================================================================
+   AUDIT PANEL (SOC Bottom Dashboard - Collapsible)
+   ========================================================================== */
+.audit-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0c1322;
+  border-top: 2px solid var(--primary-altium);
+  z-index: 99;
+  transition: height var(--transition-normal);
+  height: 50px; /* Collapsed height */
+  display: flex;
+  flex-direction: column;
+}
+
+.audit-panel.expanded {
+  height: 480px; /* Expanded height */
+  box-shadow: 0 -15px 35px rgba(0,0,0,0.4);
+}
+
+.audit-panel-bar {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #080d1a;
+  border-bottom: 1px solid #1e293b;
+}
+
+.bar-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-title);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-light);
+}
+
+.bar-title i {
+  color: var(--primary-altium);
+}
+
+.bar-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.audit-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.emerald-badge {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.red-badge {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--red-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-toggle-audit {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.btn-toggle-audit:hover {
+  color: var(--text-light);
+}
+
+.audit-panel-content {
+  padding: 1.75rem 2rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+  pointer-events: none;
+}
+
+.audit-panel.expanded .audit-panel-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.audit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.audit-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.audit-column h4 {
+  font-family: var(--font-family-title);
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: var(--text-light);
+}
+
+.col-desc {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 0.65rem;
+}
+
+.code-box {
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 0.85rem;
+  height: 125px;
+  overflow-y: auto;
+}
+
+.code-box pre {
+  font-size: 0.75rem;
+  color: #fbbf24;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Guidelines for hacker inputs */
+.audit-instructions {
+  border-top: 1px solid #1e293b;
+  padding-top: 1.25rem;
+}
+
+.audit-instructions h5 {
+  font-family: var(--font-family-title);
+  font-size: 0.9rem;
+  color: var(--primary-altium);
+  margin-bottom: 0.75rem;
+}
+
+.instructions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.inst-item {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  background-color: rgba(255, 90, 0, 0.03);
+  border: 1px solid rgba(255, 90, 0, 0.08);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+
+.inst-item strong {
+  display: block;
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+}
+
+.inst-item code {
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.08);
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-family: var(--font-family-mono);
+}
+
+/* ==========================================================================
+   COMPARISON SECTION (Traditional vs Connected Way)
+   ========================================================================== */
+.comparison-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.comparison-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.comparison-header h2 {
+  font-family: var(--font-family-title);
+  font-size: 2.25rem;
+  color: var(--text-dark);
+  font-weight: 800;
+  letter-spacing: -0.75px;
+  margin-bottom: 0.75rem;
+}
+
+.comparison-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.comparison-cards {
+  display: flex;
+  gap: 2.5rem;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+}
+
+.comp-card {
+  flex: 1;
+  border-radius: 24px;
+  padding: 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, border-color 0.3s;
+}
+
+.traditional-card {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+}
+
+.new-way-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+}
+
+.new-way-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08);
+  border-color: var(--primary-altium);
+}
+
+.traditional-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.04);
+}
+
+.comp-card h3 {
+  font-family: var(--font-family-title);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.comp-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.comp-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: 1px solid rgba(100, 116, 139, 0.12);
+  padding-top: 1.75rem;
+}
+
+.comp-item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.comp-item-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255, 90, 0, 0.08);
+  border: 1px solid rgba(255, 90, 0, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-altium);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.traditional-card .comp-item-icon {
+  background-color: rgba(100, 116, 139, 0.08);
+  border: 1px solid rgba(100, 116, 139, 0.15);
+  color: var(--text-muted);
+}
+
+.comp-item-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.comparison-divider {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.arrow-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--altium-blue);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 15px rgba(0, 125, 212, 0.3);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.new-way-card:hover ~ .comparison-divider .arrow-circle {
+  transform: scale(1.1) rotate(180deg);
+}
+
+/* Responsive Comparison Grid */
+@media (max-width: 960px) {
+  .comparison-cards {
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+  .comp-card {
+    padding: 3rem 2rem;
+  }
+  .comparison-divider {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    margin: -1.5rem auto;
+  }
+  .arrow-circle {
+    transform: rotate(90deg);
+  }
+  .new-way-card:hover ~ .comparison-divider .arrow-circle {
+    transform: scale(1.1) rotate(270deg);
+  }
+}
+
+

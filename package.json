@@ -1,0 +1,15 @@
+{
+  "name": "pagina-webvul",
+  "version": "1.0.0",
+  "description": "Aplicación Web Vulnerable con fines educativos y de simulación para SIEM/SOC (OWASP Top 10).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "4.16.0",
+    "minimist": "1.2.0"
+  },
+  "author": "Antigravity SOC Lab",
+  "license": "ISC"
+}
