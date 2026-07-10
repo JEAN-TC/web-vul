@@ -80,4 +80,3 @@ El portal estará disponible en: [http://127.0.0.1:3000](http://127.0.0.1:3000).
 *   *Prueba:* Ingresa en el input de la URL la dirección de la API local del servidor: `http://localhost:3000/api/comments`. El servidor realizará la consulta de forma interna y expondrá la información protegida de comentarios.
 
 ---
-Este fichero sirve como fuente de ingesta directa para alimentar las reglas KQL y los dashboards interactivos de tu SIEM.
